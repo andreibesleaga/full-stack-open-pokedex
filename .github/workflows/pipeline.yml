@@ -53,6 +53,7 @@ jobs:
           rollbackonhealthcheckfailed: true
 
   notifier:
+    needs: simple_deployment_pipeline
     runs-on: ubuntu-18.04
     if: ${{ github.event_name == 'push' }}
     steps:
