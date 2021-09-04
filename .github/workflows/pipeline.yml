@@ -48,5 +48,5 @@ jobs:
           healthcheck: ${{secrets.HEROKU_HEALTHCHECK}}
           checkstring: "ok"
           procfile: "web: npm run start-prod"
-          delay: 10
+          delay: 9
           rollbackonhealthcheckfailed: true
