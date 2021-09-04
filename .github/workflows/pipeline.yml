@@ -50,13 +50,11 @@ jobs:
           checkstring: "ok"
           delay: 9
           rollbackonhealthcheckfailed: true
-      - name: Notify by actions-slack
-        uses: innocarpe/actions-slack@v1
-        with:
-          status: ${{ github.job.status }} # Required
-          success_text: 'Step Succeeded' # Optional
-          failure_text: 'Step Failed' # Optional
-          cancelled_text: 'Step Cancelled' # Optional
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
+      - name: Notify Slack
+        uses: mdecoleman/slack-job-status-notifier@v1
+            if: always()
+            with:
+              slack_token:  ${{ secrets.SLACK_TOKEN }}
+              slack_channel: "notifications"
+              status: ${{ job.status }}
+              job_name: "simple_deployment_pipeline"
