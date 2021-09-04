@@ -5,8 +5,9 @@ on:
     branches:
       - master
   pull_request:
-    branches: [master]
-    types: [opened, synchronize]
+    if: ${{ github.event_name == 'push' }}
+      branches: [master]
+      types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
