@@ -55,6 +55,6 @@ jobs:
         if: always()
         with:
           slack_token:  ${{ secrets.SLACK_TOKEN }}
-          slack_channel: "notifications"
+          slack_channel: "code"
           status: ${{ job.status }}
           job_name: "simple_deployment_pipeline"

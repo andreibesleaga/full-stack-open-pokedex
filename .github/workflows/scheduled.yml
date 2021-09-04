@@ -2,7 +2,7 @@ name: Periodic HealthCheck
 
 on:
   schedule:
-    - cron:  '16 52 * * *'
+    - cron:  '01 01 * * *'
 
 jobs:
   pingo:
