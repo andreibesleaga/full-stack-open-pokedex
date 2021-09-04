@@ -51,15 +51,10 @@ jobs:
           procfile: "web: npm run start-prod"
           delay: 9
           rollbackonhealthcheckfailed: true
-
-  notifier:
-    needs: simple_deployment_pipeline
-    runs-on: ubuntu-18.04
-    steps:
       - name: Notify by actions-slack
         uses: innocarpe/actions-slack@v1
         with:
-          status: ${{ simple_deployment_pipeline.status }} # Required
+          status: ${{ github.job.status }} # Required
           success_text: 'Step Succeeded' # Optional
           failure_text: 'Step Failed' # Optional
           cancelled_text: 'Step Cancelled' # Optional
