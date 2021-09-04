@@ -32,6 +32,11 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.33.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
@@ -40,6 +45,6 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           healthcheck: ${{secrets.HEROKU_HEALTHCHECK}}
           checkstring: "ok"
-          procfile: "web: npm start"
+          procfile: "web: npm run start-prod"
           delay: 5
           rollbackonhealthcheckfailed: true
