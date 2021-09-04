@@ -56,10 +56,10 @@ jobs:
       - name: Notify by actions-slack
         uses: innocarpe/actions-slack@v1
         with:
-              status: ${{ jobs.simple_deployment_pipeline.status }} # Required
-              success_text: 'Step Succeeded 🚀' # Optional
-              failure_text: 'Step Failed 😱' # Optional
-              cancelled_text: 'Step Cancelled ⚠️' # Optional
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
-              SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
+          status: ${{ jobs.simple_deployment_pipeline.status }} # Required
+          success_text: 'Step Succeeded' # Optional
+          failure_text: 'Step Failed' # Optional
+          cancelled_text: 'Step Cancelled' # Optional
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
