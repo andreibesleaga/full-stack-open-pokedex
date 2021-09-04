@@ -39,6 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
+          RELEASE_BRANCHES: main
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
@@ -50,3 +51,15 @@ jobs:
           procfile: "web: npm run start-prod"
           delay: 9
           rollbackonhealthcheckfailed: true
+
+  notifier:
+      - name: Notify by actions-slack
+        uses: innocarpe/actions-slack@v1
+        with:
+              status: ${{ jobs.simple_deployment_pipeline.status }} # Required
+              success_text: 'Step Succeeded 🚀' # Optional
+              failure_text: 'Step Failed 😱' # Optional
+              cancelled_text: 'Step Cancelled ⚠️' # Optional
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required
+              SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # Required
