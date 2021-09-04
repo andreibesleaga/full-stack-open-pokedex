@@ -52,9 +52,9 @@ jobs:
           rollbackonhealthcheckfailed: true
       - name: Notify Slack
         uses: mdecoleman/slack-job-status-notifier@v1
-            if: always()
-            with:
-              slack_token:  ${{ secrets.SLACK_TOKEN }}
-              slack_channel: "notifications"
-              status: ${{ job.status }}
-              job_name: "simple_deployment_pipeline"
+        if: always()
+        with:
+          slack_token:  ${{ secrets.SLACK_TOKEN }}
+          slack_channel: "notifications"
+          status: ${{ job.status }}
+          job_name: "simple_deployment_pipeline"
