@@ -5,13 +5,13 @@ on:
     branches:
       - master
   pull_request:
-    if: ${{ github.event_name == 'push' }}
-      branches: [master]
-      types: [opened, synchronize]
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
+    if: ${{ github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
