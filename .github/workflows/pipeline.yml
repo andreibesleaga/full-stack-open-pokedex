@@ -53,6 +53,10 @@ jobs:
           rollbackonhealthcheckfailed: true
 
   notifier:
+    runs-on: ubuntu-18.04
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v2
       - name: Notify by actions-slack
         uses: innocarpe/actions-slack@v1
         with:
